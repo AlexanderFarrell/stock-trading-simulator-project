@@ -1,0 +1,5 @@
+GET https://query1.finance.yahoo.com/v8/finance/chart/gnus
+Accept: application/json
+Origin: localhost:3000
+
+###
