@@ -1,5 +1,5 @@
-import {SetUpTemplate} from './template.js';
 import {App} from "./helper/app.js";
+import {SetUpTemplate} from './template.js';
 
 let app = new App();
 SetUpTemplate(app);
