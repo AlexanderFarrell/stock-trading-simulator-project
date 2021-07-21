@@ -1,10 +1,10 @@
 import {Cash} from "./cash";
-const {PositionsList} = require("./position");
+const  {PositionsList} = require("./position");
 
 class Game {
 	constructor() {
 		this.Name = "New Game";
-		this.CashAmount = new Cash(0.0);
+		this.Cash = new Cash(0.0);
 		this.Positions = new PositionsList();
 	}
 	
@@ -12,7 +12,7 @@ class Game {
 		try {
 			let costTransaction = quantity * costPerShare;
 			this.Positions.AddToPosition(symbol, quantity, costTransaction);
-			this.CashAmount.Credit(costTransaction);
+			this.Cash.Credit(costTransaction);
 		} catch (e) {
 			throw e;
 		}
@@ -22,9 +22,44 @@ class Game {
 		try {
 			let revenueTransaction = pricePerShare * quantity;
 			this.Positions.ReducePosition(symbol, quantity);
-			this.CashAmount.Debit(revenueTransaction);
+			this.Cash.Debit(revenueTransaction);
 		} catch (e) {
 			throw e;
 		}
 	}
+}
+
+export let game = null;
+
+export function NewGame(name, startingCash){
+	game = new Game();
+}
+
+export function LoadGame(name){
+	if (GameExists(name)){
+		let data = JSON.parse(window.localStorage.getItem(name));
+		if (Game.isPrototypeOf(data)){
+			game = data;
+		} else {
+			throw new Error(`The saved game named ${name} appears to be corrupted. We're sorry, `+
+			`this file cannot be loaded.`);
+		}
+	} else {
+		throw new Error("No saved game found named " + name);
+	}
+}
+
+export function SaveGame(){
+	if (game !== null){
+		if (Game.isPrototypeOf(game)){
+			window.localStorage.setItem(game.name, JSON.stringify(game));
+		}
+	}
+	 else {
+		throw new Error("Cannot save game, no game currently being played.");
+	}
+}
+
+export function GameExists(name){
+	return window.localStorage.getItem(name) !== undefined;
 }

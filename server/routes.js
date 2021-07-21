@@ -7,16 +7,16 @@ function serveStatic(app){
 }
 
 function setUpStockRoutes(app){
-	app.get('/quote/:quote', (req, res) => {
-		let raw_quote = req.params['quote'];
-		let sanitized_quote = raw_quote.replace(/\^[a-zA-Z]+$/) //sanitize quote
-		let quote = sanitized_quote.toLowerCase();
+	app.get('/ticker/:ticker', (req, res) => {
+		let raw_ticker = req.params['ticker'];
+		let sanitized_ticker = raw_ticker.replace(/\^[a-zA-Z]+$/) //sanitize ticker
+		let ticker = sanitized_ticker.toLowerCase();
 		
-		if (quote.length > 0){
+		if (ticker.length > 0){
 			axios
-				.get(`https://query1.finance.yahoo.com/v8/finance/chart/${quote}`)
+				.get(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}`)
 				.then(r => {
-					console.log(`Retrieved quote for ${quote}`);
+					console.log(`Retrieved quote for ${ticker}`);
 					res.send(r.data);
 				})
 		} else {
