@@ -1,5 +1,5 @@
-import {Cash} from "./cash";
-const  {PositionsList} = require("./position");
+import {Cash} from "./cash.js";
+import {PositionsList} from "./position.js";
 
 class Game {
 	constructor() {
@@ -62,4 +62,14 @@ export function SaveGame(){
 
 export function GameExists(name){
 	return window.localStorage.getItem(name) !== undefined;
+}
+
+export let StartingCashOptions = {
+	zero: {cash: 1},
+	one: {cash: 10},
+	two: {cash: 100},
+	three: {cash: 1000},
+	four: {cash: 10000},
+	five: {cash: 100000},
+	six: {cash: 1000000}
 }

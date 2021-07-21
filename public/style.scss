@@ -9,7 +9,7 @@ $textColorLight: #EAEAEA;
 $textColorDark:  #121212;
 
 //Color Helper
-$shadowColor: #262626;
+$shadowColor: #6c6b6b;
 
 //Form
 $border_radius: 10px;
@@ -27,16 +27,25 @@ html {
 body {
   background: linear-gradient(180deg, $background, $backgroundSecondary);
   color: $textColorLight;
-  text-shadow: $shadowColor 1px 1px 2px;
+  text-shadow: $shadowColor 1px 1px 1px;
   font-size: $text_size;
   font-family: $font;
 
   margin: 0;
 }
 
+h1, h2, h3, h4, h5 {
+  text-align: center;
+}
+
 //Template
 #Template {
-
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto 1fr auto;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header {
@@ -61,6 +70,7 @@ footer {
 }
 
 #WelcomeScreen {
+  margin: 20px;
 
 }
 
@@ -102,11 +112,52 @@ footer {
 
 }
 .Button {
-
+  margin: 10px;
+  padding: 10px;
+  background: $accent;
+  transform: scale(0.98);
+  transition: .2s;
+  text-align: center;
 }
 .Button:hover {
+  background: $primary;
+  cursor: pointer;
+  transform: scale(0.99);
+  transition: .2s;
+}
+.Button:active {
+  transform: scale(0.97);
+  transition: .2s;
+  cursor: pointer;
 
 }
 .TextInput {
 
+}
+.RadioContainer {
+  margin: 10px;
+  padding: 10px;
+}
+.RadioValueContainer {
+
+  padding: 5px;
+}
+input[type="text"], textarea {
+  -webkit-appearance: none;
+  width: 100%;
+  height: $text_size * 1.5;
+  align-self: center;
+
+  display: inherit;
+
+  text-align: center;
+  font-size: inherit;
+
+  background: $textColorLight;
+  border: 2px $primary solid;
+  color: $textColorDark;
+}
+.KeyValueRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }

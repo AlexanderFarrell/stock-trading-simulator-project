@@ -1,9 +1,77 @@
-import {ElementBuilder} from "../elements/element_builder";
+import {ElementBuilder} from "../elements/element_builder.js";
+import {GetTextInput} from "../elements/text_input.js";
+import {RadioBuilder} from "../elements/radio_input.js";
+import {game, NewGame, StartingCashOptions} from "../../core/game.js";
+import {Cash} from "../../core/cash.js";
+import {GetButton} from "../elements/button.js";
+import {template} from "../template/template.js";
+import {PositionsScreen} from "./positions_screen.js";
 
 export class WelcomeScreen {
 	constructor() {
 		this.View = new ElementBuilder()
 			.withId('WelcomeScreen')
 			.build();
+		
+		let title = new ElementBuilder('h1')
+			.withInnerHtml("Welcome")
+			.build()
+		
+		let subTitle = new ElementBuilder('h2')
+			.withInnerHtml("Start a New Game")
+			.build()
+		
+		let nameContainer = new ElementBuilder()
+			.withClass('KeyValueRow')
+			.build();
+		let label = new ElementBuilder('h3')
+			.withInnerHtml('Name')
+			.withEntireStyle('place-self: center')
+			.build();
+		
+		
+		this.NameInput = GetTextInput("Name");
+		this.NameInput.value = "New Game";
+		nameContainer.appendChild(label);
+		nameContainer.appendChild(this.NameInput);
+		
+		
+		let cashContainer = new ElementBuilder()
+			.withClass('KeyValueRow')
+			.build();
+		let cashStartHeader = new ElementBuilder('h3')
+			.withInnerHtml("Starting Cash")
+			.withEntireStyle('place-self: center')
+			.build();
+		let cashOptionBuilder = new RadioBuilder('difficulty')
+		for (const key in StartingCashOptions) {
+			let cashAmount = new Cash(StartingCashOptions[key].cash);
+			cashOptionBuilder.withOption(key, cashAmount.Display());
+		}
+		let cashOptions = cashOptionBuilder.build();
+		cashContainer.appendChild(cashStartHeader);
+		cashContainer.appendChild(cashOptions);
+		
+		
+		let notice = new ElementBuilder()
+			.withInnerHtml(`Note: This app stores saved games locally via a very small amount of Local Storage. Local Storage is required to play.`)
+			.build();
+		
+		
+		let startGame = GetButton('Start Game', () => {
+			NewGame(this.NameInput.value, StartingCashOptions[document.querySelector(`input[name = 'difficulty']:checked`).value]);
+			let pos = new PositionsScreen();
+			template.ContentContainer.switchScreen(pos, pos.View);
+		});
+		
+		this.View.appendChild(title);
+		this.View.appendChild(subTitle);
+		
+		this.View.appendChild(nameContainer)
+		
+		this.View.appendChild(cashContainer)
+		
+		this.View.appendChild(notice)
+		this.View.appendChild(startGame);
 	}
 }

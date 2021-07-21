@@ -21,6 +21,10 @@ export class Cash {
 		this._amount -= amount;
 	}
 	
+	Display(){
+		return `$${this._amount.toLocaleString()}`
+	}
+	
 	HasAtLeast(amount) {
 		return this._amount >= amount;
 	}

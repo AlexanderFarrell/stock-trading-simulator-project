@@ -1,4 +1,7 @@
-import {template} from "./ui/template/template";
-import {WelcomeScreen} from "./ui/screens/welcome_screen";
+import {template} from "./ui/template/template.js";
+import {WelcomeScreen} from "./ui/screens/welcome_screen.js";
 
-template.ContentContainer(new WelcomeScreen().View);
+{
+	let welcomeScreen = new WelcomeScreen();
+	template.ContentContainer.switchScreen(welcomeScreen, welcomeScreen.View);
+}
