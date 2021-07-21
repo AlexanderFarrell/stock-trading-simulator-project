@@ -7,3 +7,6 @@
 
 ### Attribution
 Yahoo Finance 
+
+### SRS and SDD
+Both the Software Requirement Specification and the Software Design Document are available in the docs folder.

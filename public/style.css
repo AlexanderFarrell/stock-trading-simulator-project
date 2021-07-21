@@ -1,123 +1,20 @@
-body {
-  margin: 0;
-  background-color: #000000;
-  color: #ffffff;
-  text-shadow: #3b7072 1px 1px 1px;
-  font-family: sans-serif;
-  font-size: 25px;
-}
-
-#MainContentContainer {
-  min-height: 100vh;
-  margin: 0 10%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto 1fr auto;
-  justify-content: space-between;
-}
-
-h1 {
-  text-align: center;
-}
-
-/*.SubtleShadow {
-  box-shadow: #313131 0 0 2px;
-}*/
-header {
-  /*@extend .SubtleShadow;*/
-  background-color: #1b1e26;
-  padding: 10px;
-}
-
-#HeaderBar {
-  display: grid;
-  grid-template-columns: auto 70% auto;
-}
-
-.ThreeColumn {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-.NavButton {
-  border: #ffffff none 1px;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.NavButton:hover {
-  background: #4e667b;
-  box-shadow: black 1px 1px 5px;
-  transition: 0.2s;
-}
-
-.MainContent {
-  /*@extend .SubtleShadow;*/
-  display: block;
-  background-color: #1b1e26;
-}
-
-#NavButtons {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-around;
-}
-
-footer {
-  margin-top: auto;
-  text-align: center;
-}
-
-a {
-  color: #57cdbb;
-}
-
-.WeekContainer {
-  display: flex;
-  justify-items: center;
-  place-content: space-between;
+html {
   width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-.Button {
-  border: #ffffff none 1px;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  text-align: center;
-  align-self: center;
+body {
+  background: linear-gradient(180deg, #022F40, #183446);
+  color: #EAEAEA;
+  text-shadow: #262626 1px 1px 2px;
+  font-size: 25px;
+  font-family: arial;
+  margin: 0;
 }
 
-.Button:hover {
-  background: #4e667b;
-  box-shadow: black 1px 1px 5px;
-  transition: 0.2s;
-}
-
-#Money {
-  font-size: 30px;
-}
-
-#SearchGame {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-}
-
-.MetadataQuote {
-  padding: 10px;
-  border: 15px;
-  background: #000000;
-}
-
-.Symbol {
-  text-align: center;
-}
-
-.Price {
-  text-align: center;
+.Container {
+  background: #1C9FC7;
 }
 
 /*# sourceMappingURL=style.css.map */
