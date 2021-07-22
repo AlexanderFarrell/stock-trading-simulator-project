@@ -55,7 +55,12 @@ export class WelcomeScreen {
 		
 		
 		let notice = new ElementBuilder()
+			.withClass("notice")
 			.withInnerHtml(`Note: This app stores saved games locally via a very small amount of Local Storage. Local Storage is required to play.`)
+			.build();
+		let noticeA = new ElementBuilder()
+			.withClass("notice")
+			.withInnerHtml(`This game is a simulation, and information reflected is not guaranteed to be accurate, nor intended to be taken as advise. By pressing Start Game, you agree that I am not responsible for financial decisions made or any losses or damages as a result of playing this game.`)
 			.build();
 		
 		
@@ -99,6 +104,7 @@ export class WelcomeScreen {
 		this.View.appendChild(cashContainer)
 		
 		this.View.appendChild(notice)
+		this.View.appendChild(noticeA)
 		this.View.appendChild(startGame);
 		this.View.appendChild(console);
 	}

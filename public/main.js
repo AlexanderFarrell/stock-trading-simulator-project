@@ -6,15 +6,20 @@ import {SearchScreen} from "./ui/screens/search_screen.js";
 import {GameScreen} from "./ui/screens/game_screen.js";
 import {GameExists, LoadGame} from "./core/game.js";
 
-if (GameExists("Some")) {
+try {
+	if (!GameExists("Some")) {
+		throw new Error("No game");
+	}
 	LoadGame("Some");
 	let positionsScreen = new PositionsScreen();
 	template.ContentContainer.switchScreen(positionsScreen, positionsScreen.View);
-} else {
+} catch (e) {
 	let welcomeScreen = new WelcomeScreen();
 	template.ContentContainer.switchScreen(welcomeScreen, welcomeScreen.View);
 	HideElement(template.NavigationBar.View);
 }
+
+
 
 /*{
 	let welcomeScreen = new WelcomeScreen();

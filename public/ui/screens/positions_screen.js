@@ -80,7 +80,7 @@ export class PositionsScreen {
 					posView.appendChild(button);
 					
 					if (posToCalculate === 0){
-						totalView.innerHTML = `<h2>Total Value: ${new Cash(total).Display()}</h2>`;
+						totalView.innerHTML = `<h2>Total Value: ${new Cash(positionsValue + cash).Display()}</h2>`;
 						positionsValueView.innerHTML = `<h3>Value in Positions: ${new Cash(positionsValue).Display()}</h3>`;
 					}
 				})
