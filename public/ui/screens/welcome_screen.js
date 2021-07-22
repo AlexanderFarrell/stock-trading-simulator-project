@@ -6,6 +6,7 @@ import {Cash} from "../../core/cash.js";
 import {GetButton} from "../elements/button.js";
 import {template} from "../template/template.js";
 import {PositionsScreen} from "./positions_screen.js";
+import {ShowElement} from "../helpers/view_helper.js";
 
 export class WelcomeScreen {
 	constructor() {
@@ -58,11 +59,37 @@ export class WelcomeScreen {
 			.build();
 		
 		
+		let console = new ElementBuilder()
+			.withInnerHtml(``)
+			.withEntireStyle('text-align: center')
+			.withClass('ErrorConsole')
+			.build();
+		
+		
 		let startGame = GetButton('Start Game', () => {
-			NewGame(this.NameInput.value, StartingCashOptions[document.querySelector(`input[name = 'difficulty']:checked`).value]);
-			let pos = new PositionsScreen();
-			template.ContentContainer.switchScreen(pos, pos.View);
+			//Get our required fields.
+			if (document.querySelector(`input[name = 'difficulty']:checked`) === null) {
+				console.innerHTML = 'Please choose an amount of fake cash to start with.';
+				return;
+			}
+			
+			let n = this.NameInput.value;
+			let c = StartingCashOptions[document.querySelector(`input[name = 'difficulty']:checked`).value];
+			
+			if (n !== undefined && n.length > 0 && c !== undefined){
+				//Start the game!
+				NewGame(this.NameInput.value, StartingCashOptions[document.querySelector(`input[name = 'difficulty']:checked`).value]);
+				let pos = new PositionsScreen();
+				template.ContentContainer.switchScreen(pos, pos.View);
+				ShowElement(template.NavigationBar.View);
+			} else if (n === undefined || n.length === 0) {
+				console.innerHTML = 'Please enter a name for the game.';
+			} else if (c === undefined){
+				console.innerHTML = 'Please choose an amount of fake cash to start with.';
+			}
 		});
+		
+		
 		
 		this.View.appendChild(title);
 		this.View.appendChild(subTitle);
@@ -73,5 +100,6 @@ export class WelcomeScreen {
 		
 		this.View.appendChild(notice)
 		this.View.appendChild(startGame);
+		this.View.appendChild(console);
 	}
 }

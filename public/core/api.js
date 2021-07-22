@@ -51,6 +51,7 @@ async function GetJsonFromExternalSource(url){
 		let dataRaw = await fetch(url);
 		return await dataRaw.json();
 	} catch (e) {
-		throw new Error(e.message);
+		console.error(e);
+		throw new Error("Unable to retrieve data from server.");
 	}
 }
