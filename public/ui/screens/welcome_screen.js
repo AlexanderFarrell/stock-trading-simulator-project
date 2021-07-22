@@ -50,6 +50,7 @@ export class WelcomeScreen {
 			cashOptionBuilder.withOption(key, cashAmount.Display());
 		}
 		let cashOptions = cashOptionBuilder.build();
+		cashOptions.style.justifySelf = "center";
 		cashContainer.appendChild(cashStartHeader);
 		cashContainer.appendChild(cashOptions);
 		

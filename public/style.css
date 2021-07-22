@@ -27,12 +27,10 @@ h1, h2, h3, h4, h5 {
   min-height: 100vh;
 }
 
-#header {
-  margin-top: 0;
-}
-
 #footer {
-  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
   text-align: center;
 }
 
