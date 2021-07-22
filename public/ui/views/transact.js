@@ -59,5 +59,5 @@ export class Transact {
 }
 
 function RefreshCost(shares, costPerShare){
-	return `$${shares * costPerShare}`;
+	return `$${shares * -costPerShare}`;
 }
