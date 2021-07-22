@@ -33,6 +33,8 @@ export let game = null;
 
 export function NewGame(name, startingCash){
 	game = new Game();
+	game.Name = name;
+	game.Cash = new Cash(parseFloat(startingCash.cash))
 }
 
 export function LoadGame(name){

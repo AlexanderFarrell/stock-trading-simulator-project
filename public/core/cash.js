@@ -18,7 +18,7 @@ export class Cash {
 			throw new Error("Attempted to credit a positive amount");
 		}
 		
-		this._amount -= amount;
+		this._amount += amount;
 	}
 	
 	Display(){
