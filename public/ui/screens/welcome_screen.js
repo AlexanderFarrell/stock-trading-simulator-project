@@ -1,7 +1,7 @@
 import {ElementBuilder} from "../elements/element_builder.js";
 import {GetTextInput} from "../elements/text_input.js";
 import {RadioBuilder} from "../elements/radio_input.js";
-import {game, NewGame, StartingCashOptions} from "../../core/game.js";
+import {NewGame, StartingCashOptions} from "../../core/game.js";
 import {Cash} from "../../core/cash.js";
 import {GetButton} from "../elements/button.js";
 import {template} from "../template/template.js";
@@ -61,7 +61,7 @@ export class WelcomeScreen {
 			.build();
 		let noticeA = new ElementBuilder()
 			.withClass("notice")
-			.withInnerHtml(`This game is a simulation, and information reflected is not guaranteed to be accurate, nor intended to be taken as advise. By pressing Start Game, you agree that I am not responsible for financial decisions made or any losses or damages as a result of playing this game.`)
+			.withInnerHtml(`This game is a simulation, and information reflected is not guaranteed to be accurate, nor intended to be taken as advise. Shares are not actually bought or sold. By pressing Start Game, you agree that I am not responsible for financial decisions made or any losses or damages as a result of playing this game.`)
 			.build();
 		
 		

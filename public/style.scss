@@ -38,6 +38,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   text-align: center;
+  margin: 20px;
 }
 
 //Template
@@ -51,6 +52,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #header {
+  margin: 5px;
 }
 
 #footer {
@@ -158,7 +160,7 @@ a {
 
 }
 .notice {
-  font-size: $text_size * 0.8;
+  font-size: $text_size * 0.65;
   padding: 3px;
   width: 90%;
   margin-left: 5%;
@@ -175,6 +177,7 @@ a {
 }
 input[type="text"], input[type='number'], textarea {
   -webkit-appearance: none;
+  -moz-appearance: none;
   width: 100%;
   height: $text_size * 1.5;
   align-self: center;
