@@ -1,23 +1,37 @@
-class Position {
+export class Position {
 	constructor() {
 		this._buys = [];
 		this._firstBuyDate = Date.now();
 	}
 	
 	TotalCost(){
-		return this._buys
+		
+		let sum = 0;
+		this._buys.forEach(i => {
+			sum += i.cost;
+		})
+		return sum;
+		
+		/*return this._buys
 			.map(buy => buy.cost)
-			.reduce((item, collect) => collect + item, 0);
+			.reduce((item, collect) => collect + item, 0);*/
 	}
 	
 	TotalQuantity(){
-		return this._buys
+		let sum = 0;
+		this._buys.forEach(i => {
+			sum += i.quantity;
+		})
+		return sum;
+		
+		/*return this._buys
 			.map(buy => buy.quantity)
-			.reduce((item, collect) => collect + item, 0);
+			.reduce((item, collect) => collect + item, 0);*/
 	}
 	
 	HasAtLeast(amount){
-		return this.TotalQuantity() >= amount;
+		let q = this.TotalQuantity();
+		return q >= amount;
 	}
 	
 	AddToPosition(quantity, cost){
@@ -80,7 +94,7 @@ export class PositionsList {
 	}
 	
 	ReducePosition(name, quantity){
-		this._positions[name].ReducePosition(name, quantity);
+		this._positions[name].ReducePosition(quantity);
 		if (this._positions[name].quantity === 0){
 			delete this._positions[name];
 		}

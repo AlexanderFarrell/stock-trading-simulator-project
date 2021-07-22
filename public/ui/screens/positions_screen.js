@@ -45,13 +45,16 @@ export class PositionsScreen {
 				.withClass('Container')
 				.build();
 			
+			let quantity = game.Positions._positions[p].TotalQuantity();
+			
 			posView.appendChild(new ElementBuilder()
-				.withInnerHtml(`<div class="Container">${p} - Shares: ${game.Positions._positions[p].TotalQuantity()} - Cost: ${game.Positions._positions[p].TotalCost()}`)
+				.withInnerHtml(`<div class="Container" style="text-align: center">${p} - Shares: ${quantity} - Cost: ${game.Positions._positions[p].TotalCost()}`)
 				.build())
 			
 			
 			let valueView = new ElementBuilder()
 				.withInnerHtml("Value: Calculating...")
+				.withEntireStyle('text-align: center')
 				.build();
 			posView.appendChild(valueView);
 			
@@ -61,18 +64,18 @@ export class PositionsScreen {
 				.then(data => {
 					let price = parseFloat(data.quoteSummary.result[0].price.regularMarketPrice.raw);
 					
-					valueView.innerHTML = `Value: ${new Cash(price).Display()}`;
+					valueView.innerHTML = `Value: ${new Cash(price * quantity).Display()}`;
 					
-					positionsValue += price;
+					positionsValue += price * quantity;
 					posToCalculate -= 1;
 					
-					let transact = new Transact('sell', p, posView, price);
+					let transact = new Transact('sell', p, posView, price, () => {
+						let posScreen = new PositionsScreen();
+						template.ContentContainer.switchScreen(posScreen, posScreen.View);
+					});
 					let button = GetButton('Sell', () => {
 						button.remove();
 						posView.appendChild(transact.View);
-						
-						let posScreen = new PositionsScreen();
-						template.ContentContainer.switchScreen(posScreen, posScreen.View);
 					})
 					posView.appendChild(button);
 					

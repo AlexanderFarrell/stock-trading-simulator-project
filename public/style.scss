@@ -21,7 +21,6 @@ $font: arial;
 
 html {
   width: 100%;
-  height: 100%;
   margin: 0;
 }
 
@@ -31,6 +30,8 @@ body {
   text-shadow: $shadowColor 1px 1px 1px;
   font-size: $text_size;
   font-family: $font;
+  width: 100%;
+  min-height: 100vh;
 
   margin: 0;
 }
@@ -42,19 +43,20 @@ h1, h2, h3, h4, h5 {
 //Template
 #Template {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
+  min-height: 100vh;
 }
 
-header {
-
+#header {
+  margin-top: 0;
 }
 
-footer {
-
+#footer {
+  margin-bottom: 0;
+  text-align: center;
 }
 
 .ErrorConsole {
@@ -90,6 +92,10 @@ footer {
 
 #GameScreen {
 
+}
+
+a {
+  color: $primary;
 }
 
 //Views
@@ -131,7 +137,7 @@ footer {
   margin: 10px;
   padding: 10px;
   background: $accent;
-  transform: scale(0.98);
+  transform: scale(0.97);
   transition: .2s;
   text-align: center;
 }
@@ -142,7 +148,7 @@ footer {
   transition: .2s;
 }
 .Button:active {
-  transform: scale(0.97);
+  transform: scale(0.95);
   transition: .2s;
   cursor: pointer;
 

@@ -1,5 +1,5 @@
 import {Cash} from "./cash.js";
-import {PositionsList} from "./position.js";
+import {Position, PositionsList} from "./position.js";
 
 class Game {
 	constructor() {
@@ -13,6 +13,7 @@ class Game {
 			let costTransaction = quantity * costPerShare;
 			this.Positions.AddToPosition(symbol, quantity, costTransaction);
 			this.Cash.Credit(costTransaction);
+			SaveGame();
 		} catch (e) {
 			throw e;
 		}
@@ -23,6 +24,7 @@ class Game {
 			let revenueTransaction = pricePerShare * quantity;
 			this.Positions.ReducePosition(symbol, quantity);
 			this.Cash.Debit(revenueTransaction);
+			SaveGame();
 		} catch (e) {
 			throw e;
 		}
@@ -40,12 +42,21 @@ export function NewGame(name, startingCash){
 export function LoadGame(name){
 	if (GameExists(name)){
 		let data = JSON.parse(window.localStorage.getItem(name));
-		if (Game.isPrototypeOf(data)){
+		//game = data;
+		game = Object.assign(new Game(), data);
+		game.Cash = Object.assign(new Cash(), game.Cash);
+		game.Positions = Object.assign(new PositionsList(), game.Positions);
+		
+		for (const i in game.Positions._positions){
+			game.Positions._positions[i] = Object.assign(new Position(), game.Positions._positions[i]);
+		}
+		
+		/*if (Game.isPrototypeOf(data)){
 			game = data;
 		} else {
 			throw new Error(`The saved game named ${name} appears to be corrupted. We're sorry, `+
 			`this file cannot be loaded.`);
-		}
+		}*/
 	} else {
 		throw new Error("No saved game found named " + name);
 	}
@@ -53,9 +64,7 @@ export function LoadGame(name){
 
 export function SaveGame(){
 	if (game !== null){
-		if (Game.isPrototypeOf(game)){
-			window.localStorage.setItem(game.name, JSON.stringify(game));
-		}
+		window.localStorage.setItem("Some", JSON.stringify(game));
 	}
 	 else {
 		throw new Error("Cannot save game, no game currently being played.");
@@ -63,7 +72,7 @@ export function SaveGame(){
 }
 
 export function GameExists(name){
-	return window.localStorage.getItem(name) !== undefined;
+	return window.localStorage.getItem(name) !== undefined && window.localStorage.getItem(name) !== null;
 }
 
 export let StartingCashOptions = {

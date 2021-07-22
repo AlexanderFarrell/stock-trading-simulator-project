@@ -5,7 +5,7 @@ import {GetPrice} from "../../core/api.js";
 import {game} from "../../core/game.js";
 
 export class Transact {
-	constructor(type, ticker, container, costVal) {
+	constructor(type, ticker, container, costVal, on = null) {
 		this.View = new ElementBuilder()
 			.withClass('TransactView')
 			.build();
@@ -32,16 +32,19 @@ export class Transact {
 					
 					switch (type){
 						case 'buy':
-							game.Buy(ticker, input.value, -price);
+							game.Buy(ticker, parseInt(input.value), -price);
 							break;
 						case 'sell':
-							game.Sell(ticker, input.value, price);
+							game.Sell(ticker, parseInt(input.value), price);
 							break;
 						default:
 							throw new Error("Unable to determine transaction.")
 					}
 					
 					input.value = '0';
+					if (on !== null){
+						on();
+					}
 					
 				})
 				.catch(err => {
@@ -55,6 +58,7 @@ export class Transact {
 		this.View.appendChild(input);
 		this.View.appendChild(cost);
 		this.View.appendChild(confirm);
+		
 	}
 }
 
