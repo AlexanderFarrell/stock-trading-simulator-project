@@ -19,6 +19,7 @@ function setupSecurity(app){
 	}))
 }
 
+
 function setupMiddleware(app){
 	setupGeneral(app);
 	setupSecurity(app);
