@@ -1,12 +1,11 @@
 const express = require('express');
 const http = require('http');
 const {setupApplication} = require("./setup");
+let port = normalizePort(process.env.PORT || '3000')
 
 //Build Server
 const app = express();
 setupApplication(app);
-
-let port = normalizePort(process.env.PORT || '3000')
 
 //Start Server
 let server = http.createServer(app);
