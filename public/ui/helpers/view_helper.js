@@ -1,9 +1,17 @@
 export function HideElement(element){
-	element.style.visibility = 'hidden';
+	//element.style.visibility = 'hidden';
+	//element.hidden = true;
+	element.style.display = "none";
 }
 
 export function ShowElement(element){
-	element.style.visibility = 'visible';
+	//element.style.visibility = 'visible';
+	//element.hidden = false;
+	element.style.display = "initial";
+}
+
+export function ToggleElement(element) {
+	element.hidden = !element.hidden;
 }
 
 export function CamelToSpaces(s){
