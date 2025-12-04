@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  stock-sim:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: stock-sim
+    ports:
+     - "16790:3000"
